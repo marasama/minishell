@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:11:50 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/21 08:13:48 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/21 11:02:40 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,5 @@ int	parser(t_shell *shell, int flags[3])
 	b = shell->lex_list;
 	start_parse(b, shell, flags, content);
 	free_lexes(&shell->lex_list);
-	return (create_files_m(shell));
+	return (create_files(shell));
 }

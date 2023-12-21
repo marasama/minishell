@@ -6,14 +6,14 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:13 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/20 22:13:14 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/21 12:54:32 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <unistd.h>
 
-void	_create_dup(t_shell *m_shell)
+void	create_heredoc_dup(t_shell *m_shell)
 {
 	int	new_fd[2];
 
@@ -27,7 +27,7 @@ void	_create_dup(t_shell *m_shell)
 void	create_dup(t_shell *m_shell, t_parse *parse)
 {
 	if (parse->type == HEREDOC)
-		_create_dup(m_shell);
+		create_heredoc_dup(m_shell);
 	if (parse->infile > STDERR)
 		dup2(parse->infile, 0);
 	if (parse->outfile > STDERR)

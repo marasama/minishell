@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:12:12 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/21 09:37:15 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/21 12:53:31 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,8 @@ typedef struct s_shell
 
 extern int			g_check_heredoc;
 
-/**
- * Lexer Functions
- */
 void				lexer(char *cmd, t_list **lex_list);
 int					ignore_quote(char const *cmd, int i);
-
-/**
- * Expander Functions
- */
 int					check_quote(char *before, char *after);
 int					is_count_odd(char *before, char c);
 char				*get_env(t_list *env, char *key);
@@ -75,9 +68,6 @@ void				expand_question_mark(t_shell *shell, t_list *lex,
 void				expand_dollar_variable(t_shell *shell, t_list *lex,
 						char **temp, char *before);
 void				expander(t_shell *shell);
-/**
- * Parser Functions
- */
 void				start_parse(t_list *lex, t_shell *shell,
 						int flags[3], char *str);
 void				option_check(t_parse *parse, int flag);
@@ -85,10 +75,6 @@ void				parse_text_typer(t_parse *parse, char *str, int *j, int *flag);
 void				parse_type_typer(t_parse **parse, const char *str);
 t_parse				*initialize_parse(size_t len);
 int					parser(t_shell *m_shell, int flags[3]);
-
-/**
- * Execute Functions
- */
 void				free_all_env(t_list *tmp2, t_shell *m_shell);
 void				free_env(t_shell *m_shell);
 void				builtin_exit(t_shell **m_shell);
@@ -116,10 +102,6 @@ void				exec_others(t_parse *parse, char **env, int *fd,
 char				**get_args(t_parse *parse);
 int					single_or_multi_command(t_shell *m_shell);
 t_parse				*get_next_cmd(t_parse **parse);
-
-/**
- * Builtins Functions
- */
 void				execute_builtin_command(t_parse *parse, t_shell *m_shell);
 int					is_builtin(t_parse *data);
 void				run_echo(t_parse *data, int *i);
@@ -142,25 +124,13 @@ void				edit_env_(t_list *node, char *key, char *value,
 void				exec_pwd(t_parse *data, t_shell *m_shell);
 char				*get_home(t_shell *m_shell);
 int					export_key_control(char *text);
-
-/**
- * Signals Functions
- */
 void				signals(int sig);
 void				signals_control(void);
-
-/**
- * Main Folder Functions
- */
 void				free_lexes(t_list **node);
 void				get_readline(t_shell *shell);
 void				initialize_shell(t_shell **shell);
 void				env_get(char **env, t_shell **shell);
 void				free_str(char **str);
-
-/**
- * Heredoc Folder Functions
- */
 void				killer(int sig);
 void				set_heredoc(int sig);
 void				loop_heredoc(t_shell *m_shell);
@@ -168,18 +138,10 @@ void				heredoc(t_parse *parse, t_shell *m_shell);
 void				get_input(t_parse *parse, int *fd);
 void				get_var(int *fd, t_shell *m_shell);
 char				*add_char(char *str, char a);
-
-/**
- * Create Dup Folder Functions
- */
-void				_create_dup(t_shell *m_shell);
+void				create_heredoc_dup(t_shell *m_shell);
 void				create_dup(t_shell *m_shell, t_parse *parse);
 void				create_dup_one(t_parse *parse, int *fd);
 void				create_dup_two(t_parse *parse, int *fd);
-
-/**
- * Check Folder Functions
- */
 int					is_space(char *cmd);
 int					print_error(void);
 int					quote_check(char *data);
@@ -187,26 +149,17 @@ int					check(t_shell *shell);
 int					quote_len1(char *data);
 int					cmd_check(t_list *lex_list, char *a, char *b);
 int					is_valid_other(char *a, char *b);
-
-/**
- * Utils Folder Functions
- */
-void				_multi_command(t_parse **parse);
 void				ft_newlstiter(t_list *lst, void (*f)(), t_shell *shell);
 char				*ft_mini_strdup2(size_t len, char *s, int i,
 						const char *str);
 void				clear_pipe(int *fd);
 void				wait_all(t_shell *m_shell);
-
-/**
- * Create Files Folder Functions
- */
-int					create_files_m(t_shell *m_shell);
-void				create_out_files_me(t_parse *current_parse,
+int					create_files(t_shell *m_shell);
+void				create_out_files(t_parse *current_parse,
 						t_parse *first_parse, t_shell *m_shell);
-void				other_text_create_me(t_parse *current_parse,
+void				create_multi_file(t_parse *current_parse,
 						t_shell *m_shell);
-void				other_out_filesme(t_parse *parse, t_shell *m_shell);
+void				create_next_file(t_parse *parse, t_shell *m_shell);
 void				handle_relative_path(char **pwd, t_parse *current_parse);
 int					create_in_files_me(t_parse *parse, t_shell *shell);
 #endif

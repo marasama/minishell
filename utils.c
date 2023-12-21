@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:14:45 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/21 09:37:53 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/21 11:16:35 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,21 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <unistd.h>
+
+void	handle_relative_path(char **pwd, t_parse *current_parse)
+{
+	char	*str;
+	char	*temp;
+	t_parse	*m_next;
+
+	str = getcwd(NULL, 0);
+	m_next = current_parse->next;
+	*pwd = ft_strjoin(str, "/");
+	free(str);
+	temp = ft_strjoin(*pwd, m_next->text[0]);
+	free(*pwd);
+	*pwd = temp;
+}
 
 void	wait_all(t_shell *m_shell)
 {

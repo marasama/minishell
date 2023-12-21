@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:11:54 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/21 07:23:32 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/21 11:10:16 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void	other_out_filesme(t_parse *parse, t_shell *m_shell)
+void	create_next_file(t_parse *parse, t_shell *m_shell)
 {
 	char	*pwd1;
 	t_parse	*nparse;
@@ -39,7 +39,7 @@ void	other_out_filesme(t_parse *parse, t_shell *m_shell)
 	free(home);
 }
 
-void	other_text_create_me(t_parse *current_parse, t_shell *m_shell)
+void	create_multi_file(t_parse *current_parse, t_shell *m_shell)
 {
 	t_parse	*n_parse;
 	int		i;
@@ -61,10 +61,10 @@ void	other_text_create_me(t_parse *current_parse, t_shell *m_shell)
 		n_parse = n_parse->next;
 	}
 	current_parse->text[i] = NULL;
-	other_out_filesme(current_parse, m_shell);
+	create_next_file(current_parse, m_shell);
 }
 
-void	create_out_files_me(t_parse *current_parse, t_parse *first_parse,
+void	create_out_files(t_parse *current_parse, t_parse *first_parse,
 		t_shell *m_shell)
 {
 	char	*pwd;
@@ -73,15 +73,15 @@ void	create_out_files_me(t_parse *current_parse, t_parse *first_parse,
 
 	home = get_env(m_shell->env, "HOME");
 	m_next = current_parse->next;
-	if (m_next->type == 3 || m_next->type == 4)
-		return (free(home), other_text_create_me(current_parse, m_shell));
+	if (m_next->type == GREAT || m_next->type == GREATER)
+		return (free(home), create_multi_file(current_parse, m_shell));
 	if (!ft_strnstr(m_next->text[0], home, ft_strlen(home)))
 		handle_relative_path(&pwd, current_parse);
 	else
 		pwd = ft_strdup(m_next->text[0]);
-	if (current_parse->type == 4)
+	if (current_parse->type == GREATER)
 		m_next->fd = open(pwd, O_CREAT | O_RDWR | O_APPEND, 0777);
-	else if (current_parse->type == 3)
+	else if (current_parse->type == GREAT)
 		m_next->fd = open(pwd, O_CREAT | O_RDWR | O_TRUNC, 0777);
 	if (current_parse->cmd)
 		current_parse->outfile = m_next->fd;
@@ -92,7 +92,7 @@ void	create_out_files_me(t_parse *current_parse, t_parse *first_parse,
 	free(home);
 }
 
-int	create_files_m(t_shell *m_shell)
+int	create_files(t_shell *m_shell)
 {
 	t_parse	*current_parse;
 	t_parse	*first_parse;
@@ -103,9 +103,9 @@ int	create_files_m(t_shell *m_shell)
 	first_parse = m_shell->parse;
 	while (current_parse)
 	{
-		if (current_parse->type == 3 || current_parse->type == 4)
-			create_out_files_me(current_parse, first_parse, m_shell);
-		else if (current_parse->type == 5)
+		if (current_parse->type == GREAT || current_parse->type == GREATER)
+			create_out_files(current_parse, first_parse, m_shell);
+		else if (current_parse->type == LESS)
 			i = create_in_files_me(current_parse, m_shell);
 		current_parse = current_parse->next;
 	}
