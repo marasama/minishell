@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:14:39 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/20 22:14:39 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/21 14:01:51 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,14 @@ void	signals(int sig)
 	rl_redisplay();
 }
 
+void	sigtir(int sig)
+{
+	(void)sig;
+	
+}
+
 void	signals_control(void)
 {
 	signal(SIGINT, signals);
-	signal(SIGQUIT, SIG_IGN);
+	signal(SIGQUIT, sigtir);
 }
