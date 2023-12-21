@@ -10,7 +10,6 @@ SRC		:=	check_builtin.c \
 			export_unset.c \
 			cd.c \
 			run_builtin3.c \
-			exit_command.c \
 			check.c \
 			check_utils.c \
 			dup2_fd.c \
@@ -25,7 +24,7 @@ SRC		:=	check_builtin.c \
 			heredoc_utils.c \
 			heredoc.c \
 			lexer.c \
-			env.c \
+			exit.c \
 			main.c \
 			parser.c \
 			parser_utils.c \

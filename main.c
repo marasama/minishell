@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 19:22:22 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/20 23:30:19 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/21 08:30:49 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int		check_heredoc;
+int		g_check_heredoc;
 
 void	initialize_shell(t_shell **shell)
 {
@@ -27,23 +27,21 @@ void	initialize_shell(t_shell **shell)
 	(*shell)->exec_status = 0;
 	(*shell)->heredoc = NULL;
 	(*shell)->cmd = NULL;
-	check_heredoc = 0;
+	g_check_heredoc = 0;
 }
 
 void	get_readline(t_shell *shell)
 {
-	get_title_from_env(&shell);
-	shell->cmd = readline(shell->title);
+	shell->cmd = readline("\e[32mminishell\e[35m$ \e[0m");
 	if (shell->cmd && !is_space(shell->cmd))
 	{
 		free(shell->cmd);
-		free(shell->title);
 		get_readline(shell);
 	}
 	if (!shell->cmd)
 	{
 		free_loop(0, shell);
-		free_(shell);
+		free_env(shell);
 		if (shell->lex_list)
 			free(shell->lex_list);
 		free(shell);
@@ -52,9 +50,10 @@ void	get_readline(t_shell *shell)
 	add_history(shell->cmd);
 }
 
-void	go_parser(t_shell *shell, char **env, int control)
+void	parse_exec(t_shell *shell, char **env)
 {
-	int flags[3];
+	int	flags[3];
+	int	control;
 
 	flags[0] = 0;
 	flags[1] = 0;
@@ -88,10 +87,8 @@ void	free_lexes(t_list **node)
 int	main(int ac, char **av, char **env)
 {
 	t_shell	*shell;
-	int		control;
 
 	(void)av;
-	control = 0;
 	if (ac != 1)
 		exit(write(2, "This program cannot accept any arguments\n", 41));
 	initialize_shell(&shell);
@@ -104,11 +101,11 @@ int	main(int ac, char **av, char **env)
 		{
 			lexer(shell->cmd, &shell->lex_list);
 			expander(shell);
-			go_parser(shell, env, control);
+			parse_exec(shell, env);
 		}
 		else
 		{
-			(free(shell->cmd), free(shell->title));
+			free(shell->cmd);
 			continue ;
 		}
 	}

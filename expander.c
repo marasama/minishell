@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:11:47 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/20 22:11:48 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/21 06:56:10 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	expand_question_mark(t_shell *shell, t_list *lex, char **temp,
 	*temp = ft_strchr(lex->content + ft_strlen(before), '$');
 }
 
-static void	expander_tilde(t_shell *shell, t_list *lex)
+static void	expand_tilde(t_shell *shell, t_list *lex)
 {
 	char	*tmp;
 	char	*home;
@@ -101,7 +101,7 @@ void	expander(t_shell *shell)
 	while (lex)
 	{
 		if (((char *)lex->content)[0] == '~')
-			expander_tilde(shell, lex);
+			expand_tilde(shell, lex);
 		temp = ft_strchr(lex->content, '$');
 		while (temp)
 		{

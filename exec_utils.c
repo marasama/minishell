@@ -6,23 +6,23 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:30 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/20 22:15:20 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:37:13 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_parse	*_next_command(t_parse **parse)
+t_parse	*get_next_cmd(t_parse **parse)
 {
-	if ((*parse)->infile > STDERR || (*parse)->outfile > STDERR
-		|| (*parse)->type == HEREDOC)
+	t_parse *tmp;
+
+	tmp = *parse;
+	while (tmp->infile > STDERR || tmp->outfile > STDERR
+		|| tmp->type == HEREDOC)
 	{
-		return ((*parse)->next->next);
+		tmp = tmp->next;
 	}
-	else
-	{
-		return ((*parse)->next);
-	}
+	return (tmp->next);
 }
 
 int	single_or_multi_command(t_shell *m_shell)

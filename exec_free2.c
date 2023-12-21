@@ -6,14 +6,14 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:27 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/20 22:13:28 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/21 08:40:40 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 
-void	free_text(char **text)
+void	free_parse_text(char **text)
 {
 	int	i;
 
@@ -29,29 +29,25 @@ void	free_text(char **text)
 	}
 }
 
-void	_free_parse(t_parse *parse)
-{
-	t_parse	*tmp;
-
-	while (parse)
-	{
-		tmp = parse;
-		parse = parse->next;
-		if (tmp->cmd)
-			free(tmp->cmd);
-		if (tmp->text)
-			free_text(tmp->text);
-		free(tmp);
-	}
-}
-
 void	free_parser(t_shell *m_shell)
 {
 	t_parse	*parse;
+	t_parse	*tmp;
 
 	parse = m_shell->parse;
 	if (parse)
-		_free_parse(parse);
+	{
+		while (parse)
+		{
+			tmp = parse;
+			parse = parse->next;
+			if (tmp->cmd)
+				free(tmp->cmd);
+			if (tmp->text)
+				free_parse_text(tmp->text);
+			free(tmp);
+		}
+	}
 	else if (m_shell->parse)
 		free(m_shell->parse);
 }

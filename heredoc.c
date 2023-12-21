@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:52 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/20 23:10:15 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/21 08:30:49 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	get_input(t_parse *parse, int *fd)
 	char	*buffer;
 
 	delimiter = parse->next->text[0];
-	while (1 && check_heredoc != -3)
+	while (1 && g_check_heredoc != -3)
 	{
 		buffer = readline("> ");
 		if (ft_strcmp(buffer, delimiter) == 0)
@@ -107,7 +107,7 @@ void	heredoc(t_parse *parse, t_shell *m_shell)
 		close(fd[0]);
 		get_input(parse, fd);
 		close(fd[1]);
-		free_(m_shell);
+		free_env(m_shell);
 		free_loop(1, m_shell);
 		if (m_shell->lex_list)
 			free(m_shell->lex_list);

@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:02 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/20 23:01:46 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/21 07:12:57 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	is_valid_other(char *a, char *b)
 	return (1);
 }
 
-int	cmd_is_valid(t_list *lex_list, char *a, char *b)
+int	cmd_check(t_list *lex_list, char *a, char *b)
 {
 	t_list	*tmp;
 	int		i;
@@ -111,5 +111,5 @@ int	quote_check(char *data)
 
 int	check(t_shell *shell)
 {
-	return (cmd_is_valid(shell->lex_list, NULL, NULL));
+	return (cmd_check(shell->lex_list, NULL, NULL));
 }

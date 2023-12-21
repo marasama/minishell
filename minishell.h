@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:12:12 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/20 23:30:29 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:37:15 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,9 @@ typedef struct s_shell
 	t_parse			*parse;
 	char			*heredoc;
 	int				exec_status;
-	char			*title;
 }					t_shell;
 
-extern int			check_heredoc;
+extern int			g_check_heredoc;
 
 /**
  * Lexer Functions
@@ -79,39 +78,36 @@ void				expander(t_shell *shell);
 /**
  * Parser Functions
  */
-void				start_parse(t_list *lex, t_shell *m_shell,
+void				start_parse(t_list *lex, t_shell *shell,
 						int flags[3], char *str);
 void				option_check(t_parse *parse, int flag);
-void				parse_text_m(t_parse *parse, char *str, int *j, int *flag);
-void				tokenize_type_m(t_parse **parse, const char *str);
+void				parse_text_typer(t_parse *parse, char *str, int *j, int *flag);
+void				parse_type_typer(t_parse **parse, const char *str);
 t_parse				*initialize_parse(size_t len);
 int					parser(t_shell *m_shell, int flags[3]);
-void				free_node(t_list **node);
 
 /**
  * Execute Functions
  */
-void				_free_env(t_list *tmp2, t_shell *m_shell);
+void				free_all_env(t_list *tmp2, t_shell *m_shell);
 void				free_env(t_shell *m_shell);
 void				builtin_exit(t_shell **m_shell);
-void				free_(t_shell *m_shell);
 void				free_loop(int control, t_shell *m_shell);
 void				execve_child_free(char **str, t_shell *m_shell);
-void				free_text(char **text);
-void				_free_parse(t_parse *parse);
+void				free_parse_text(char **text);
 void				free_parser(t_shell *m_shell);
 int					*create_pipe(void);
 void				run_command(char **env, t_parse *tmp, int *fd,
 						t_shell *m_shell);
 void				run_single_command(char **env, t_parse *parse,
 						t_shell *m_shell);
-void				multi_command_(t_parse *parse, char **env, t_shell *m_shell,
+void				multi_command(t_parse *parse, char **env, t_shell *m_shell,
 						int *fd);
-void				multi_command(char **env, int x, t_parse *parse,
+void				run_multi_command(char **env, t_parse *parse,
 						t_shell *m_shell);
 void				exec(char **env, t_shell *m_shell);
 char				*search_command(char *cmd, char **value);
-char				*_search_path(t_shell *m_shell);
+char				*get_path(t_shell *m_shell);
 void				search_path(t_parse *data, int i, t_shell *m_shell);
 void				run_execve(t_parse *parse, char **env, int *fd,
 						t_shell *m_shell);
@@ -119,7 +115,7 @@ void				exec_others(t_parse *parse, char **env, int *fd,
 						t_shell *m_shell);
 char				**get_args(t_parse *parse);
 int					single_or_multi_command(t_shell *m_shell);
-t_parse				*_next_command(t_parse **parse);
+t_parse				*get_next_cmd(t_parse **parse);
 
 /**
  * Builtins Functions
@@ -138,7 +134,6 @@ int					unset_edit(t_list **node, t_list **prev_node,
 						t_shell *m_shell);
 void				exec_unset(t_parse *data, t_shell *m_shell, int i, int x);
 void				change_old(char *str, t_shell *m_shell);
-void				_change_pwd(t_env **env);
 void				change_pwd(t_parse *data, t_shell *m_shell);
 void				exec_cd1(char *str, t_parse *data, t_shell *m_shell);
 void				exec_cd(t_parse *data, t_shell *m_shell);
@@ -158,12 +153,10 @@ void				signals_control(void);
  * Main Folder Functions
  */
 void				free_lexes(t_list **node);
-void				go_parser(t_shell *shell, char **env, int control);
 void				get_readline(t_shell *shell);
 void				initialize_shell(t_shell **shell);
 void				env_get(char **env, t_shell **shell);
 void				free_str(char **str);
-void				get_title_from_env(t_shell **shell);
 
 /**
  * Heredoc Folder Functions
@@ -192,7 +185,7 @@ int					print_error(void);
 int					quote_check(char *data);
 int					check(t_shell *shell);
 int					quote_len1(char *data);
-int					cmd_is_valid(t_list *lex_list, char *a, char *b);
+int					cmd_check(t_list *lex_list, char *a, char *b);
 int					is_valid_other(char *a, char *b);
 
 /**

@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_exit.c                                         :+:      :+:    :+:   */
+/*   get_env-exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:22 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/20 23:29:17 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:05:53 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int	is_numeric(char *s)
 {
@@ -52,32 +53,9 @@ void	builtin_exit(t_shell **m_shell)
 		(*m_shell)->exec_status = 1;
 		return ;
 	}
-	(free_loop(1, *m_shell), free_(*m_shell));
+	(free_loop(1, *m_shell), free_env(*m_shell));
 	(free((*m_shell)->lex_list), free(*m_shell));
 	exit(exit_value);
-}
-
-void	get_title_from_env(t_shell **shell)
-{
-	char	*user;
-	char	*pwd;
-	char	*title;
-	char	*temp;
-
-	user = get_env((*shell)->env, "USER");
-	pwd = get_env((*shell)->env, "PWD");
-	title = ft_strdup(user);
-	free(user);
-	temp = ft_strjoin(title, "@");
-	free(title);
-	title = temp;
-	temp = ft_strjoin(title, pwd);
-	free(title);
-	title = temp;
-	temp = ft_strjoin(title, "$ ");
-	free(title);
-	(*shell)->title = temp;
-	free(pwd);
 }
 
 void	free_str(char **str)
@@ -92,20 +70,20 @@ void	free_str(char **str)
 
 void	env_get(char **env, t_shell **shell)
 {
-	t_env	*a;
+	t_env	*new_node;
 	char	**str;
 
 	free((*shell)->env);
 	(*shell)->env = NULL;
 	while (*env)
 	{
-		a = malloc(sizeof(t_env));
+		new_node = malloc(sizeof(t_env));
 		str = ft_split(*env, '=');
 		if (str && str[0] && str[1])
 		{
-			a->key = ft_strdup(str[0]);
-			a->value = ft_strdup(str[1]);
-			ft_lstadd_back(&(*shell)->env, ft_lstnew(a));
+			new_node->key = ft_strdup(str[0]);
+			new_node->value = ft_strdup(str[1]);
+			ft_lstadd_back(&(*shell)->env, ft_lstnew(new_node));
 		}
 		free_str(str);
 		env++;

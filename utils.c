@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:14:45 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/20 22:14:46 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:37:53 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,6 @@ void	clear_pipe(int *fd)
 		}
 		if (fd)
 			free(fd);
-	}
-}
-
-void	_multi_command(t_parse **parse)
-{
-	if ((*parse)->infile > STDERR || (*parse)->outfile > STDERR
-		|| (*parse)->type == HEREDOC)
-	{
-		(*parse) = (*parse)->next->next;
-	}
-	else
-	{
-		(*parse) = (*parse)->next;
 	}
 }
 

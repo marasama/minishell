@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:11:50 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/20 23:20:01 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/21 08:13:48 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ static void	remove_quotes_in_parse(t_parse *parse)
 	}
 }
 
-void	start_parse(t_list *lex, t_shell *m_shell, int flags[3], char *str)
+void	start_parse(t_list *lex, t_shell *shell, int flags[3], char *str)
 {
 	t_parse	*parse;
 
 	parse = initialize_parse((size_t)ft_lstsize(lex));
-	m_shell->parse = parse;
+	shell->parse = parse;
 	while (lex != NULL)
 	{
 		str = lex->content;
@@ -77,7 +77,7 @@ void	start_parse(t_list *lex, t_shell *m_shell, int flags[3], char *str)
 			parse->cmd = ft_strdup(str);
 		else if (str[0] == '|' || str[0] == '>' || str[0] == '<')
 		{
-			if (tokenize_type_m(&parse, str), str[0] == '|')
+			if (parse_type_typer(&parse, str), str[0] == '|')
 				flags[0] = 0;
 			parse->next = initialize_parse((size_t)ft_lstsize(lex));
 			flags[1] = 0;
@@ -85,21 +85,21 @@ void	start_parse(t_list *lex, t_shell *m_shell, int flags[3], char *str)
 			parse = parse->next;
 		}
 		else if (ft_strcmp(str, ""))
-			parse_text_m(parse, str, &flags[1], &flags[2]);
+			parse_text_typer(parse, str, &flags[1], &flags[2]);
 		remove_quotes_in_parse(parse);
 		lex = lex->next;
 	}
 	option_check(parse, flags[2]);
 }
 
-int	parser(t_shell *m_shell, int flags[3])
+int	parser(t_shell *shell, int flags[3])
 {
 	t_list	*b;
 	char	*content;
 
 	content = NULL;
-	b = m_shell->lex_list;
-	start_parse(b, m_shell, flags, content);
-	free_lexes(&m_shell->lex_list);
-	return (create_files_m(m_shell));
+	b = shell->lex_list;
+	start_parse(b, shell, flags, content);
+	free_lexes(&shell->lex_list);
+	return (create_files_m(shell));
 }

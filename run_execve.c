@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:14:32 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/20 22:14:33 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:12:42 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*search_command(char *cmd, char **value)
 	return (substring);
 }
 
-char	*_search_path(t_shell *m_shell)
+char	*get_path(t_shell *m_shell)
 {
 	t_env	*env;
 	t_list	*tmp;
@@ -72,7 +72,7 @@ void	search_path(t_parse *data, int i, t_shell *m_shell)
 
 	x = -1;
 	str = NULL;
-	value = _search_path(m_shell);
+	value = get_path(m_shell);
 	while (x != 0 && value && ++i < 10)
 	{
 		if (str)
