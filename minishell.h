@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:12:12 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/21 12:53:31 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/22 12:06:09 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ void				expander(t_shell *shell);
 void				start_parse(t_list *lex, t_shell *shell,
 						int flags[3], char *str);
 void				option_check(t_parse *parse, int flag);
-void				parse_text_typer(t_parse *parse, char *str, int *j, int *flag);
+void				parse_text_typer(t_parse *parse, char *str, int *j,
+						int *flag);
 void				parse_type_typer(t_parse **parse, const char *str);
 t_parse				*initialize_parse(size_t len);
 int					parser(t_shell *m_shell, int flags[3]);

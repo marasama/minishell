@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env-exit.c                                     :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:22 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/21 09:05:53 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/22 12:07:30 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	is_numeric(char *s)
 void	builtin_exit(t_shell **m_shell)
 {
 	int	status;
-	int				exit_value;
+	int	exit_value;
 
 	exit_value = 0;
 	printf("exit\n");

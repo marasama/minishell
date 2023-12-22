@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 19:22:22 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/21 12:59:35 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/22 12:04:46 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	get_readline(t_shell *shell)
 		if (shell->lex_list)
 			free(shell->lex_list);
 		free(shell);
-		exit(1);
+		exit(0);
 	}
 	add_history(shell->cmd);
 }
@@ -109,4 +109,5 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		}
 	}
+	return (0);
 }
