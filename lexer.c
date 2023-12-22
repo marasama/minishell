@@ -6,12 +6,11 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:12:09 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/20 22:12:10 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/22 15:52:02 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 int	ignore_quote(char const *cmd, int i)

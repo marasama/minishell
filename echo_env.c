@@ -6,12 +6,11 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:16 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/20 22:13:17 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/22 15:45:59 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 #include <unistd.h>
 
 void	run_echo(t_parse *data, int *i)

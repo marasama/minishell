@@ -6,17 +6,15 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:52 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/21 08:30:49 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/22 16:02:44 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
-#include <readline/history.h>
 #include <readline/readline.h>
-#include <signal.h>
-#include <stdlib.h>
 #include <sys/wait.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 char	*add_char(char *str, char a)

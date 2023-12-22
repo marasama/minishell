@@ -6,12 +6,11 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:11:47 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/21 06:56:10 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/22 15:49:01 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 void	expand_dollar_variable(t_shell *shell, t_list *lex, char **temp,

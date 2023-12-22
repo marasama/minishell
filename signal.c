@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:14:39 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/22 12:06:21 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/22 15:58:03 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 #include <stdio.h>
 #include <readline/readline.h>
 #include <signal.h>
-#include <string.h>
 #include <unistd.h>
-#include <stdlib.h>
 
 void	signals(int sig)
 {

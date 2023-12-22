@@ -6,13 +6,13 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:14:45 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/21 11:16:35 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/22 16:04:15 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdlib.h>
 #include <sys/wait.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 void	handle_relative_path(char **pwd, t_parse *current_parse)

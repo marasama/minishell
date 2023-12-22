@@ -9,7 +9,7 @@ SRC		:=	check_builtin.c \
 			echo_env.c \
 			export_unset.c \
 			cd.c \
-			run_builtin3.c \
+			utils2.c \
 			check.c \
 			check_utils.c \
 			dup2_fd.c \

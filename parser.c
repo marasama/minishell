@@ -6,13 +6,11 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:11:50 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/21 11:02:40 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/22 15:54:34 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 static void	remove_quotes_in_str(char *str)
 {

@@ -6,13 +6,12 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:12:57 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/20 22:12:58 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/22 15:43:18 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
-#include <stdlib.h>
 
 int	is_space(char *cmd)
 {

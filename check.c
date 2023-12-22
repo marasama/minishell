@@ -6,13 +6,12 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:02 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/21 07:12:57 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/22 15:43:55 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
-#include <stdlib.h>
 
 int	is_valid_other(char *a, char *b)
 {

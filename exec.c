@@ -6,12 +6,11 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:34 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/21 09:37:13 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/22 15:48:10 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 

@@ -6,15 +6,13 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:11:54 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/21 11:10:16 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/22 15:45:02 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <fcntl.h>
-#include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 
 void	create_next_file(t_parse *parse, t_shell *m_shell)
 {

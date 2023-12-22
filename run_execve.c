@@ -6,14 +6,14 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:14:32 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/21 09:12:42 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/22 16:04:07 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <sys/wait.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/wait.h>
 #include <unistd.h>
 
 char	*search_command(char *cmd, char **value)

@@ -6,13 +6,11 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:40 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/21 13:34:06 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/22 15:48:38 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 int	is_count_odd(char *before, char c)
 {

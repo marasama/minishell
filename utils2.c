@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run_builtin3.c                                     :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:14:13 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/21 07:28:23 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/22 15:55:57 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 
 void	edit_env_(t_list *node, char *key, char *value, t_shell *m_shell)
 {
