@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:16 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/24 23:57:00 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/25 00:03:24 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ void	exec_echo(t_parse *data, t_shell *m_shell)
 		write(data->outfile, "", 1);
 	else
 	{
-		if (data->text[i][0] == '-' && data->text[i][1] == 'n'
-			&& data->text[i][1] == '\0')
+		if (data->text[0][0] == '-' && data->text[0][1] == 'n'
+			&& all_n_chars(data->text[0] + 2))
 		{
 			while (data->text[i][0] == '-' && data->text[i][1] == 'n'
-				&& data->text[i][1] == '\0' && data->text[i])
+			&& all_n_chars(data->text[i] + 2))
 				i++;
 			if (data->text[i])
 				run_echo(data, &i);

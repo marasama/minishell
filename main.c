@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 19:22:22 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/24 23:57:40 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/24 23:58:49 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@
 #include <unistd.h>
 
 int		g_check_heredoc;
-
-void	malloc_error(void)
-{
-	printf("Memory allocation error");
-	exit(1);
-}
 
 void	initialize_shell(t_shell **shell)
 {
