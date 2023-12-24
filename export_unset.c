@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_unset.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:46 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/20 23:02:55 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/24 23:53:55 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	export_print(char *text, char *cmd, t_shell *m_shell)
 	if (ft_strchr(text, '=') != 0)
 	{
 		key = ft_substr(text, 0, ft_strchrindex(text, '='));
-		value = ft_substr(text, ft_strchrindex(text, '=') + 1, (ft_strlen(cmd)
+		value = ft_substr(text, ft_strchrindex(text, '=') + 1, (ft_strlen(text)
 					- 1));
 	}
 	else

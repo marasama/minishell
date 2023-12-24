@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 19:22:22 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/22 15:53:25 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/24 23:57:40 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,18 @@
 
 int		g_check_heredoc;
 
+void	malloc_error(void)
+{
+	printf("Memory allocation error");
+	exit(1);
+}
+
 void	initialize_shell(t_shell **shell)
 {
 	*shell = malloc(sizeof(t_shell));
 	(*shell)->env = malloc(sizeof(t_env));
+	if (!(*shell) || (*shell)->env)
+		malloc_error();
 	(*shell)->lex_list = NULL;
 	(*shell)->exec_status = 0;
 	(*shell)->heredoc = NULL;

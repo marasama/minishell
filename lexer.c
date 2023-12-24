@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:12:09 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/22 15:52:02 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/24 23:47:58 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	lexer(char *cmd, t_list **lex_list)
 	len = len_for_separate(cmd);
 	content = ft_substr(cmd, 0, len);
 	trimmed_content = ft_strtrim(content, " ");
+	if (!content || !trimmed_content || !cmd)
+		malloc_error();
 	free(content);
 	ft_lstadd_back(lex_list, ft_lstnew(trimmed_content));
 	lexer(cmd + len, lex_list);

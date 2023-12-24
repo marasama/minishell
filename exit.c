@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:22 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/22 12:07:30 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/24 23:44:14 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void	env_get(char **env, t_shell **shell)
 	while (*env)
 	{
 		new_node = malloc(sizeof(t_env));
+		if (!new_node)
+			malloc_error();
 		str = ft_split(*env, '=');
 		if (str && str[0] && str[1])
 		{

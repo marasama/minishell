@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:14:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/22 15:53:57 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/24 23:49:26 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ t_parse	*initialize_parse(size_t len)
 
 	parse = malloc(sizeof(t_parse));
 	if (!parse)
-		return (NULL);
+		malloc_error();
 	(parse)->next = NULL;
 	(parse)->cmd = NULL;
 	(parse)->text = ft_calloc(sizeof(char *), len + 1);
 	if (!(parse)->text)
-		return (NULL);
+		malloc_error();
 	(parse)->type = 0;
 	(parse)->infile = STDINN;
 	(parse)->outfile = STDOUT;
