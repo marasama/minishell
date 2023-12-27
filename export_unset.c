@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:46 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/25 00:03:44 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/26 22:11:40 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	declare_export(void *data, t_shell *m_shell)
 	write(str->outfile, "\n", 1);
 }
 
-int	export_print(char *text, char *cmd, t_shell *m_shell)
+int	export_print(char *text, t_shell *m_shell)
 {
 	char	*key;
 	char	*value;
@@ -72,7 +72,7 @@ int	exec_export(t_parse *data, t_shell *m_shell)
 	{
 		while (data->text[i])
 		{
-			if (export_print(data->text[i], data->cmd, m_shell))
+			if (export_print(data->text[i], m_shell))
 			{
 				m_shell->exec_status = 1;
 				return (1);

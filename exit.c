@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:22 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/24 23:44:14 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/27 00:00:44 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	env_get(char **env, t_shell **shell)
 	{
 		new_node = malloc(sizeof(t_env));
 		if (!new_node)
-			malloc_error();
+			malloc_error(3, shell);
 		str = ft_split(*env, '=');
 		if (str && str[0] && str[1])
 		{

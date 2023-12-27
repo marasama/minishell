@@ -6,17 +6,28 @@
 /*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:14:13 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/24 23:59:00 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/27 00:02:00 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-void	malloc_error(void)
+void	malloc_error(int control, t_shell **shell)
 {
-	printf("Memory allocation error");
-	exit(1);
+	if (control != 0)
+	{
+		if (control > 1)
+			free(*shell);
+		if (control > 2)
+		{
+			free((*shell)->env);
+			free_env(*shell);
+		}
+		printf("Memory allocation error");
+		exit(control);
+	}
 }
 
 void	edit_env_(t_list *node, char *key, char *value, t_shell *m_shell)

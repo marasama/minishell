@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 19:22:22 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/24 23:58:49 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/26 23:44:25 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ int		g_check_heredoc;
 void	initialize_shell(t_shell **shell)
 {
 	*shell = malloc(sizeof(t_shell));
+	if (!(*shell))
+		malloc_error(1, shell);
 	(*shell)->env = malloc(sizeof(t_env));
-	if (!(*shell) || (*shell)->env)
-		malloc_error();
+	if (!(*shell)->env)
+		malloc_error(2, shell);
 	(*shell)->lex_list = NULL;
 	(*shell)->exec_status = 0;
 	(*shell)->heredoc = NULL;

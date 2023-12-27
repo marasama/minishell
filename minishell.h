@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:12:12 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/24 23:59:22 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/26 23:32:22 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_shell
 
 extern int			g_check_heredoc;
 
-void				malloc_error(void);
+void				malloc_error(int control, t_shell **shell);
 void				lexer(char *cmd, t_list **lex_list);
 int					ignore_quote(char const *cmd, int i);
 int					check_quote(char *before, char *after);
