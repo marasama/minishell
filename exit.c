@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
+/*   By: edamar <edamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:22 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/27 00:00:44 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/27 16:30:16 by edamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,29 @@ int	is_numeric(char *s)
 	return (1);
 }
 
+void	exit_utils(char **text, int *exit_value)
+{
+		printf("bash: exit: %s: numeric argument required\n",
+			text[0]);
+		*exit_value = 255;
+}
 void	builtin_exit(t_shell **m_shell)
 {
-	int	status;
-	int	exit_value;
+	char	**text;
+	int		status;
+	int		exit_value;
 
+	status = -1;
 	exit_value = 0;
+	text = (*m_shell)->parse->text;
 	printf("exit\n");
-	if (!(*m_shell)->parse->text)
-		exit(EXIT_SUCCESS);
-	status = is_numeric((*m_shell)->parse->text[0]);
-	if (status == 0)
-	{
-		printf("bash: exit: %s: numeric argument required\n",
-			(*m_shell)->parse->text[0]);
-		exit_value = 255;
-	}
-	else if (status == 1 && !(*m_shell)->parse->text[1])
-		exit_value = ft_atoi((*m_shell)->parse->text[0]);
-	else
+	if (!!text && text[0])
+		status = is_numeric(text[0]);
+	if (status == 0 && !!text && text[0])
+		exit_utils(text, &exit_value);
+	else if (status == 1 && !!text && !text[1] && text[0])
+		exit_value = ft_atoi(text[0]);
+	else if (status != -1)
 	{
 		printf("bash: exit: too many arguments\n");
 		(*m_shell)->exec_status = 1;
@@ -79,8 +83,10 @@ void	env_get(char **env, t_shell **shell)
 	{
 		new_node = malloc(sizeof(t_env));
 		if (!new_node)
-			malloc_error(3, shell);
+			malloc_error(2, shell);
 		str = ft_split(*env, '=');
+		if (!str)
+			malloc_error(2, shell);
 		if (str && str[0] && str[1])
 		{
 			new_node->key = ft_strdup(str[0]);

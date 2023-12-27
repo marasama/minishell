@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:11:50 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/22 15:54:34 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/27 15:03:51 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	start_parse(t_list *lex, t_shell *shell, int flags[3], char *str)
 {
 	t_parse	*parse;
 
-	parse = initialize_parse((size_t)ft_lstsize(lex));
+	parse = initialize_parse((size_t)ft_lstsize(lex), &shell);
 	shell->parse = parse;
 	while (lex != NULL)
 	{
@@ -77,7 +77,7 @@ void	start_parse(t_list *lex, t_shell *shell, int flags[3], char *str)
 		{
 			if (parse_type_typer(&parse, str), str[0] == '|')
 				flags[0] = 0;
-			parse->next = initialize_parse((size_t)ft_lstsize(lex));
+			parse->next = initialize_parse((size_t)ft_lstsize(lex), &shell);
 			flags[1] = 0;
 			remove_quotes_in_parse(parse);
 			parse = parse->next;

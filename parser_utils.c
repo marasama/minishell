@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
+/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:14:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/24 23:49:26 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/27 15:03:02 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,18 @@ void	parse_type_typer(t_parse **parse, const char *str)
 		(*parse)->type = LESS;
 }
 
-t_parse	*initialize_parse(size_t len)
+t_parse	*initialize_parse(size_t len, t_shell **shell)
 {
 	t_parse	*parse;
 
 	parse = malloc(sizeof(t_parse));
 	if (!parse)
-		malloc_error();
+		malloc_error(8, shell);
 	(parse)->next = NULL;
 	(parse)->cmd = NULL;
 	(parse)->text = ft_calloc(sizeof(char *), len + 1);
 	if (!(parse)->text)
-		malloc_error();
+		malloc_error(9, shell);
 	(parse)->type = 0;
 	(parse)->infile = STDINN;
 	(parse)->outfile = STDOUT;

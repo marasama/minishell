@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
+/*   By: edamar <edamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 19:22:22 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/26 23:44:25 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/27 18:52:31 by edamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	initialize_shell(t_shell **shell)
 {
 	*shell = malloc(sizeof(t_shell));
 	if (!(*shell))
-		malloc_error(1, shell);
+		malloc_error(0, shell);
 	(*shell)->env = malloc(sizeof(t_env));
 	if (!(*shell)->env)
-		malloc_error(2, shell);
+		malloc_error(1, shell);
 	(*shell)->lex_list = NULL;
 	(*shell)->exec_status = 0;
 	(*shell)->heredoc = NULL;
@@ -66,6 +66,7 @@ void	parse_exec(t_shell *shell, char **env)
 	if (!control)
 	{
 		free_lexes(&(shell->lex_list));
+		free(shell->cmd);
 		return ;
 	}
 	if (ft_strcmp(shell->cmd, ""))
@@ -103,7 +104,7 @@ int	main(int ac, char **av, char **env)
 		get_readline(shell);
 		if (quote_check(shell->cmd))
 		{
-			lexer(shell->cmd, &shell->lex_list);
+			lexer(shell->cmd, &shell->lex_list, &shell);
 			expander(shell);
 			parse_exec(shell, env);
 		}

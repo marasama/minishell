@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:34 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/22 15:48:10 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/27 15:59:12 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,9 @@ void	multi_command(t_parse *parse, char **env, t_shell *m_shell, int *fd)
 
 void	run_multi_command(char **env, t_parse *parse, t_shell *m_shell)
 {
-	int	*fd;
+	int	fd[2];
 
 	m_shell->parse->std_in = dup(0);
-	fd = (int *)malloc(sizeof(int) * 2);
-	if (!fd)
-		return ;
 	multi_command(parse, env, m_shell, fd);
 	dup2(m_shell->parse->std_in, 0);
 	clear_pipe(fd);

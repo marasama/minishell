@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
+/*   By: edamar <edamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:12:12 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/26 23:32:22 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/27 18:38:46 by edamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,17 @@ typedef struct s_shell
 
 extern int			g_check_heredoc;
 
+void				expand_utils4(t_shell **shell, char *before, char *new_value,
+						t_list *lex);
+void				expand_utils3(t_shell **shell, char *before, char *new_value,
+						t_list *lex);
+void				expand_utils2(t_shell **shell, char *back, t_list *lex,
+						char *before);
+void				expand_utils(t_shell **shell, char *back, char *after,
+						char *before);
+void				tilde_utils(char *tmp, char *home, t_list *lex, t_shell *shell);
 void				malloc_error(int control, t_shell **shell);
-void				lexer(char *cmd, t_list **lex_list);
+void				lexer(char *cmd, t_list **lex_list, t_shell **shell);
 int					ignore_quote(char const *cmd, int i);
 int					check_quote(char *before, char *after);
 int					is_count_odd(char *before, char c);
@@ -75,7 +84,7 @@ void				option_check(t_parse *parse, int flag);
 void				parse_text_typer(t_parse *parse, char *str, int *j,
 						int *flag);
 void				parse_type_typer(t_parse **parse, const char *str);
-t_parse				*initialize_parse(size_t len);
+t_parse				*initialize_parse(size_t len, t_shell **shell);
 int					parser(t_shell *m_shell, int flags[3]);
 void				free_all_env(t_list *tmp2, t_shell *m_shell);
 void				free_env(t_shell *m_shell);

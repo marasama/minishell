@@ -1,7 +1,7 @@
 NAME	:= minishell
 CC		:= gcc
 INCLUDE	:= minishell.h
-CFLAGS	:= -ggdb -I $(INCLUDE) -I ./libft/
+CFLAGS	:= -I $(INCLUDE) -I ./libft/libft.h
 LIBFT	= libft
 FLAGS	= -Wall -Wextra -Werror -g
 
@@ -31,7 +31,8 @@ SRC		:=	check_builtin.c \
 			signal.c \
 			expander_utils.c \
 			utils.c \
-			exec_utils.c
+			exec_utils.c \
+			utils3.c
 
 OBJ		:= $(SRC:%.c=%.o)
 
@@ -42,11 +43,11 @@ $(NAME): $(OBJ)
 	@make -C $(LIBFT)
 	@cp libft/libft.a .
 	@printf "\e[35mLIBFT: \e[32mDONE \e[0m\n"
-	@$(CC) $(FLAGS) $(OBJ) libft.a -lreadline -o $@
+	@$(CC) $(FLAGS) $(CFLAGS) $(OBJ) libft.a -lreadline -o $@
 	@printf "\e[35mMINISHELL: \e[32mDONE\e[0m\n"
 
 .c.o:
-	@${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+	@${CC} ${FLAGS} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 clean:
 	@echo "Cleaning..."

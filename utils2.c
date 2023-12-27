@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
+/*   By: edamar <edamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:14:13 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/27 00:02:00 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/27 18:09:29 by edamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,50 @@
 
 void	malloc_error(int control, t_shell **shell)
 {
-	if (control != 0)
+	if (control > 3)
 	{
-		if (control > 1)
-			free(*shell);
-		if (control > 2)
-		{
-			free((*shell)->env);
-			free_env(*shell);
-		}
-		printf("Memory allocation error");
-		exit(control);
+		free_lexes(&((*shell)->lex_list));
+		if ((*shell)->cmd)
+			free((*shell)->cmd);
 	}
+	if (control > 2)
+		free_env(*shell);
+	if (control > 1 && (*shell)->env)
+		free((*shell)->env);
+	if (control > 0)
+		free(*shell);
+	printf("Memory allocation error\n");
+	exit(control);
+}
+
+void	expand_utils(t_shell **shell, char *back, char *after, char *before)
+{
+	free(after);
+	if (!back)
+	{
+		free(before);
+		malloc_error(4, shell);
+	}
+}
+
+void	tilde_utils(char *tmp, char *home, t_list *lex, t_shell *shell)
+{
+		tmp = ft_strdup(lex->content);
+		if (!tmp)
+		{
+			free(home);
+			malloc_error(4, &shell);
+		}
+		free(lex->content);
+		lex->content = ft_strjoin(home, tmp + 1);
+		if (!lex->content)
+		{
+			free(home);
+			free(tmp);
+			malloc_error(4, &shell);
+		}
+		free(tmp);
+		free(home);
 }
 
 void	edit_env_(t_list *node, char *key, char *value, t_shell *m_shell)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
+/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:12:09 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/24 23:47:58 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/27 15:09:14 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	len_for_separate(char *cmd)
 	return (i);
 }
 
-void	lexer(char *cmd, t_list **lex_list)
+void	lexer(char *cmd, t_list **lex_list, t_shell **shell)
 {
 	int		len;
 	char	*content;
@@ -65,13 +65,17 @@ void	lexer(char *cmd, t_list **lex_list)
 	if (!cmd || !*cmd)
 		return ;
 	cmd = ft_strtrim(cmd, " ");
+	if (!cmd)
+		malloc_error(4, shell);
 	len = len_for_separate(cmd);
 	content = ft_substr(cmd, 0, len);
+	if (!content)
+		malloc_error(4, shell);
 	trimmed_content = ft_strtrim(content, " ");
-	if (!content || !trimmed_content || !cmd)
-		malloc_error();
+	if (!trimmed_content)
+		malloc_error(4, shell);
 	free(content);
 	ft_lstadd_back(lex_list, ft_lstnew(trimmed_content));
-	lexer(cmd + len, lex_list);
+	lexer(cmd + len, lex_list, shell);
 	free(cmd);
 }

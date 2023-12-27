@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edamar <edamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:11:47 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/22 15:49:01 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/27 18:38:16 by edamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 void	expand_dollar_variable(t_shell *shell, t_list *lex, char **temp,
 		char *before)
@@ -21,9 +22,7 @@ void	expand_dollar_variable(t_shell *shell, t_list *lex, char **temp,
 	if (ft_isdigit((*temp)[1]))
 	{
 		new_value = ft_strdup(*temp + 2);
-		free(lex->content);
-		lex->content = ft_strjoin(before, new_value);
-		free(new_value);
+		expand_utils3(&shell, before, new_value, lex);
 		*temp = ft_strchr(lex->content + ft_strlen(before), '$');
 	}
 	else if (!ft_isdigit((*temp)[1]))
@@ -31,8 +30,11 @@ void	expand_dollar_variable(t_shell *shell, t_list *lex, char **temp,
 		new_value = get_env(shell->env, *temp + 1);
 		free(lex->content);
 		lex->content = ft_strjoin(before, new_value);
-		if ((char *)lex->content == NULL)
+		if (!(char *)lex->content)
+		{
 			lex->content = ft_strdup(before);
+			expand_utils4(&shell, before, new_value, lex);
+		}
 		free(new_value);
 		*temp = ft_strchr(lex->content + ft_strlen(before), '$');
 	}
@@ -45,13 +47,21 @@ void	expand_question_mark(t_shell *shell, t_list *lex, char **temp,
 	char	*back;
 	char	*new_value;
 
+	new_value = NULL;
 	after = ft_strdup(*temp + 2);
 	free(lex->content);
-	new_value = ft_itoa(shell->exec_status);
+	new_value = ft_itoa((shell)->exec_status);
+	if (!new_value)
+	{
+		free(after);
+		free(before);
+		malloc_error(4, &shell);
+	}
 	back = ft_strjoin(new_value, after);
 	free(new_value);
-	free(after);
+	expand_utils(&shell, back, after, before);
 	lex->content = ft_strjoin(before, back);
+	expand_utils2(&shell, back, lex, before);
 	free(back);
 	*temp = ft_strchr(lex->content + ft_strlen(before), '$');
 }
@@ -61,15 +71,12 @@ static void	expand_tilde(t_shell *shell, t_list *lex)
 	char	*tmp;
 	char	*home;
 
+	tmp = NULL;
 	home = get_env(shell->env, "HOME");
+	if (!home)
+		malloc_error(4, &shell);
 	if (((char *)lex->content)[0] == '~' && ((char *)lex->content)[1] == '/')
-	{
-		tmp = ft_strdup(lex->content);
-		free(lex->content);
-		lex->content = ft_strjoin(home, tmp + 1);
-		free(tmp);
-		free(home);
-	}
+		tilde_utils(tmp, home, lex, shell);
 	else if (((char *)lex->content)[0] == '~'
 		&& ((char *)lex->content)[1] == '\0')
 	{
