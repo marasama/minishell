@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:14:45 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/27 15:59:34 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/27 21:07:55 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	clear_pipe(int *fd)
 			if (fd[index])
 				close(fd[index]);
 		}
-		if (fd)
-			free(fd);
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edamar <edamar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:12:12 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/27 18:38:46 by edamar           ###   ########.fr       */
+/*   Updated: 2023/12/27 23:10:18 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,20 @@ typedef struct s_shell
 
 extern int			g_check_heredoc;
 
-void				expand_utils4(t_shell **shell, char *before, char *new_value,
-						t_list *lex);
-void				expand_utils3(t_shell **shell, char *before, char *new_value,
-						t_list *lex);
+void				create_files_utils2(t_shell **shell, char **home);
+void				create_files_utils(t_shell **shell, char *home, t_parse *m_next,
+						char **pwd);
+void				parse_utils(t_shell **shell, t_parse *parse, char *str);
+void				expand_utils4(t_shell **shell, char *before,
+						char *new_value, t_list *lex);
+void				expand_utils3(t_shell **shell, char *before,
+						char *new_value, t_list *lex);
 void				expand_utils2(t_shell **shell, char *back, t_list *lex,
 						char *before);
 void				expand_utils(t_shell **shell, char *back, char *after,
 						char *before);
-void				tilde_utils(char *tmp, char *home, t_list *lex, t_shell *shell);
+void				tilde_utils(char *tmp, char *home, t_list *lex,
+						t_shell *shell);
 void				malloc_error(int control, t_shell **shell);
 void				lexer(char *cmd, t_list **lex_list, t_shell **shell);
 int					ignore_quote(char const *cmd, int i);

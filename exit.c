@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edamar <edamar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:22 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/27 16:30:16 by edamar           ###   ########.fr       */
+/*   Updated: 2023/12/27 21:22:02 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ int	is_numeric(char *s)
 
 void	exit_utils(char **text, int *exit_value)
 {
-		printf("bash: exit: %s: numeric argument required\n",
-			text[0]);
-		*exit_value = 255;
+	printf("bash: exit: %s: numeric argument required\n",
+		text[0]);
+	*exit_value = 255;
 }
+
 void	builtin_exit(t_shell **m_shell)
 {
 	char	**text;

@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:11:50 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/27 15:03:51 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/27 23:21:23 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	start_parse(t_list *lex, t_shell *shell, int flags[3], char *str)
 	{
 		str = lex->content;
 		if (flags[0]++ == 0 && ft_strcmp(str, "<<"))
-			parse->cmd = ft_strdup(str);
+			parse_utils(&shell, parse, str);
 		else if (str[0] == '|' || str[0] == '>' || str[0] == '<')
 		{
 			if (parse_type_typer(&parse, str), str[0] == '|')

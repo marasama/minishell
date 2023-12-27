@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:12:31 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/22 15:43:30 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/27 23:32:10 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,5 @@ void	exec_pwd(t_parse *data, t_shell *m_shell)
 		perror("getcwd");
 		m_shell->exec_status = 1;
 	}
+	free(cwd);
 }

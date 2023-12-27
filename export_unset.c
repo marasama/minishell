@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_unset.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edamar <edamar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:46 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/25 15:39:55 by edamar           ###   ########.fr       */
+/*   Updated: 2023/12/27 23:55:52 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	export_print(char *text, t_shell *m_shell)
 		key = ft_substr(text, 0, ft_strchrindex(text, '='));
 		value = ft_substr(text, ft_strchrindex(text, '=') + 1, (ft_strlen(text)
 					- 1));
+		if (!value[0])
+			value = ft_strdup("\"\"");
 	}
 	else
 	{

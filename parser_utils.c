@@ -6,12 +6,19 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:14:01 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/27 15:03:02 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/27 21:25:27 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
+
+void	parse_utils(t_shell **shell, t_parse *parse, char *str)
+{
+	parse->cmd = ft_strdup(str);
+	if (!parse->cmd)
+		malloc_error(5, shell);
+}
 
 void	parse_text_typer(t_parse *parse, char *str, int *j, int *flag)
 {
@@ -53,12 +60,12 @@ t_parse	*initialize_parse(size_t len, t_shell **shell)
 
 	parse = malloc(sizeof(t_parse));
 	if (!parse)
-		malloc_error(8, shell);
+		malloc_error(5, shell);
 	(parse)->next = NULL;
 	(parse)->cmd = NULL;
 	(parse)->text = ft_calloc(sizeof(char *), len + 1);
 	if (!(parse)->text)
-		malloc_error(9, shell);
+		malloc_error(5, shell);
 	(parse)->type = 0;
 	(parse)->infile = STDINN;
 	(parse)->outfile = STDOUT;

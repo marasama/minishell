@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edamar <edamar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:14:13 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/27 18:09:29 by edamar           ###   ########.fr       */
+/*   Updated: 2023/12/27 23:19:31 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 void	malloc_error(int control, t_shell **shell)
 {
+	if (control > 4)
+		free_parser(*shell);
 	if (control > 3)
 	{
 		free_lexes(&((*shell)->lex_list));
@@ -44,22 +46,22 @@ void	expand_utils(t_shell **shell, char *back, char *after, char *before)
 
 void	tilde_utils(char *tmp, char *home, t_list *lex, t_shell *shell)
 {
-		tmp = ft_strdup(lex->content);
-		if (!tmp)
-		{
-			free(home);
-			malloc_error(4, &shell);
-		}
-		free(lex->content);
-		lex->content = ft_strjoin(home, tmp + 1);
-		if (!lex->content)
-		{
-			free(home);
-			free(tmp);
-			malloc_error(4, &shell);
-		}
-		free(tmp);
+	tmp = ft_strdup(lex->content);
+	if (!tmp)
+	{
 		free(home);
+		malloc_error(4, &shell);
+	}
+	free(lex->content);
+	lex->content = ft_strjoin(home, tmp + 1);
+	if (!lex->content)
+	{
+		free(home);
+		free(tmp);
+		malloc_error(4, &shell);
+	}
+	free(tmp);
+	free(home);
 }
 
 void	edit_env_(t_list *node, char *key, char *value, t_shell *m_shell)

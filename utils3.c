@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edamar <edamar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:10:41 by edamar            #+#    #+#             */
-/*   Updated: 2023/12/27 18:39:14 by edamar           ###   ########.fr       */
+/*   Updated: 2023/12/27 21:19:04 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 
-void	expand_utils2(t_shell **shell, char *back, t_list *lex, char *before)
+void	expand_utils2(t_shell **shell, char *back, t_list *lex,
+			char *before)
 {
 	if (!lex->content)
 	{
@@ -23,7 +24,8 @@ void	expand_utils2(t_shell **shell, char *back, t_list *lex, char *before)
 	}
 }
 
-void	expand_utils3(t_shell **shell, char *before, char *new_value, t_list *lex)
+void	expand_utils3(t_shell **shell, char *before, char *new_value,
+			t_list *lex)
 {
 	if (!new_value)
 	{
@@ -35,7 +37,8 @@ void	expand_utils3(t_shell **shell, char *before, char *new_value, t_list *lex)
 	free(new_value);
 }
 
-void	expand_utils4(t_shell **shell, char *before, char *new_value, t_list *lex)
+void	expand_utils4(t_shell **shell, char *before, char *new_value,
+			t_list *lex)
 {
 	if (!lex->content)
 	{

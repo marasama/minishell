@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@42.fr>                  +#+  +:+       +#+        */
+/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:16 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/25 00:03:24 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/27 20:29:13 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ void	exec_echo(t_parse *data, t_shell *m_shell)
 	i = 0;
 	if (!data->text)
 		write(data->outfile, "\n", 1);
-	else if (!data->text || data->text[0] == NULL || data->text[0][0] == '\0')
-		write(data->outfile, "", 1);
 	else
 	{
 		if (data->text[0][0] == '-' && data->text[0][1] == 'n'

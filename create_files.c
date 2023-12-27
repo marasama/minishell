@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:11:54 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/22 15:45:02 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/27 23:19:12 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ void	create_next_file(t_parse *parse, t_shell *m_shell)
 	t_parse	*nparse;
 	char	*home;
 
-	home = get_env(m_shell->env, "HOME");
 	pwd1 = NULL;
+	home = NULL;
+	create_files_utils2(&m_shell, &home);
 	nparse = parse->next;
 	if (!ft_strnstr(nparse->text[0], home, ft_strlen(home)))
 		handle_relative_path(&pwd1, parse);
 	else
-		pwd1 = ft_strdup(nparse->text[0]);
+		create_files_utils(&m_shell, home, nparse, &pwd1);
 	if (nparse->type == 4)
 		parse->fd = open(pwd1, O_CREAT | O_RDWR | O_APPEND, 0777);
 	else if (nparse->type == 3)
@@ -53,6 +54,8 @@ void	create_multi_file(t_parse *current_parse, t_shell *m_shell)
 		while (n_parse->text[j])
 		{
 			current_parse->text[i] = ft_strdup(n_parse->text[j]);
+			if (!current_parse->text[i])
+				malloc_error(5, &m_shell);
 			i++;
 			j++;
 		}
@@ -69,14 +72,16 @@ void	create_out_files(t_parse *current_parse, t_parse *first_parse,
 	t_parse	*m_next;
 	char	*home;
 
-	home = get_env(m_shell->env, "HOME");
+	pwd = NULL;
+	home = NULL;
+	create_files_utils2(&m_shell, &home);
 	m_next = current_parse->next;
 	if (m_next->type == GREAT || m_next->type == GREATER)
 		return (free(home), create_multi_file(current_parse, m_shell));
 	if (!ft_strnstr(m_next->text[0], home, ft_strlen(home)))
 		handle_relative_path(&pwd, current_parse);
 	else
-		pwd = ft_strdup(m_next->text[0]);
+		create_files_utils(&m_shell, home, m_next, &pwd);
 	if (current_parse->type == GREATER)
 		m_next->fd = open(pwd, O_CREAT | O_RDWR | O_APPEND, 0777);
 	else if (current_parse->type == GREAT)
