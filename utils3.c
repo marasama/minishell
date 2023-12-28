@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edamar <edamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:10:41 by edamar            #+#    #+#             */
-/*   Updated: 2023/12/28 07:45:23 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/28 10:45:53 by edamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,6 @@ void	export_utils(t_shell **shell, char **key, char **value,
 			malloc_error(5, shell);
 		*value = ft_substr(text, ft_strchrindex(text, '=') + 1, (ft_strlen(text)
 					- 1));
-		if (!(*value)[0] && *value)
-		{
-			free(*value);
-			*value = ft_strdup("\"\"");
-		}
 		if (!(*value))
 		{
 			free(key);

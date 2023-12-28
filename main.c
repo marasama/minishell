@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edamar <edamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 19:22:22 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/27 21:10:03 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/28 11:18:02 by edamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	parse_exec(t_shell *shell, char **env)
 	flags[0] = 0;
 	flags[1] = 0;
 	flags[2] = 0;
-	control = check(shell);
+	control = cmd_check(shell->lex_list, NULL, NULL);
 	if (!control)
 	{
 		free_lexes(&(shell->lex_list));

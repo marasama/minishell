@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edamar <edamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:22 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/27 21:22:02 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/28 12:43:19 by edamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	builtin_exit(t_shell **m_shell)
 	int		exit_value;
 
 	status = -1;
-	exit_value = 0;
+	exit_value = (*m_shell)->exec_status;
 	text = (*m_shell)->parse->text;
 	printf("exit\n");
 	if (!!text && text[0])

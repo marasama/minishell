@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edamar <edamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:02 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/22 15:43:55 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/28 11:17:56 by edamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,4 @@ int	quote_check(char *data)
 		return (0);
 	}
 	return (1);
-}
-
-int	check(t_shell *shell)
-{
-	return (cmd_check(shell->lex_list, NULL, NULL));
 }

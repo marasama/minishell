@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edamar <edamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:12:12 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/28 07:44:03 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/28 11:18:26 by edamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,6 @@ void				create_dup_two(t_parse *parse, int *fd);
 int					is_space(char *cmd);
 int					print_error(void);
 int					quote_check(char *data);
-int					check(t_shell *shell);
 int					quote_len1(char *data);
 int					cmd_check(t_list *lex_list, char *a, char *b);
 int					is_valid_other(char *a, char *b);

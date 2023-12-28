@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edamar <edamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:52 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/22 16:02:44 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/28 12:44:08 by edamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	get_var(int *fd, t_shell *m_shell)
 {
 	char	*a;
 
+	if (m_shell->heredoc)
+		m_shell->heredoc = (free(m_shell->heredoc), NULL);
 	a = malloc(sizeof(char));
 	if (!a)
 	{
