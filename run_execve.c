@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:14:32 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/27 16:03:18 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/28 07:00:37 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,4 @@ void	run_execve(t_parse *parse, char **env, int *fd, t_shell *m_shell)
 		clear_pipe(fd);
 	waitpid(parse->pid, &m_shell->exec_status, 0);
 	m_shell->exec_status = WEXITSTATUS(m_shell->exec_status);
-}
-
-void	exec_others(t_parse *parse, char **env, int *fd, t_shell *m_shell)
-{
-	run_execve(parse, env, fd, m_shell);
 }

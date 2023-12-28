@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:12:12 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/27 23:10:18 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/28 07:44:03 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,11 @@ typedef struct s_shell
 
 extern int			g_check_heredoc;
 
+void				export_utils(t_shell **shell, char **key, char **value,
+						char *text);
 void				create_files_utils2(t_shell **shell, char **home);
-void				create_files_utils(t_shell **shell, char *home, t_parse *m_next,
-						char **pwd);
+void				create_files_utils(t_shell **shell, char *home,
+						t_parse *m_next, char **pwd);
 void				parse_utils(t_shell **shell, t_parse *parse, char *str);
 void				expand_utils4(t_shell **shell, char *before,
 						char *new_value, t_list *lex);
@@ -112,8 +114,6 @@ char				*search_command(char *cmd, char **value);
 char				*get_path(t_shell *m_shell);
 void				search_path(t_parse *data, int i, t_shell *m_shell);
 void				run_execve(t_parse *parse, char **env, int *fd,
-						t_shell *m_shell);
-void				exec_others(t_parse *parse, char **env, int *fd,
 						t_shell *m_shell);
 char				**get_args(t_parse *parse);
 int					single_or_multi_command(t_shell *m_shell);

@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:13:34 by adurusoy          #+#    #+#             */
-/*   Updated: 2023/12/27 15:59:12 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/28 07:54:12 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	run_command(char **env, t_parse *tmp, int *fd, t_shell *m_shell)
 	if (control)
 		execute_builtin_command(tmp, m_shell);
 	else
-		exec_others(tmp, env, fd, m_shell);
+		run_execve(tmp, env, fd, m_shell);
 	free_env(m_shell);
 	free_loop(1, m_shell);
 	if (m_shell->lex_list)
@@ -41,7 +41,7 @@ void	run_single_command(char **env, t_parse *parse, t_shell *m_shell)
 	if (control)
 		execute_builtin_command(m_shell->parse, m_shell);
 	else
-		exec_others(m_shell->parse, env, NULL, m_shell);
+		run_execve(m_shell->parse, env, NULL, m_shell);
 }
 
 void	multi_command(t_parse *parse, char **env, t_shell *m_shell, int *fd)

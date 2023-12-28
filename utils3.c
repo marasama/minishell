@@ -6,7 +6,7 @@
 /*   By: adurusoy <adurusoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:10:41 by edamar            #+#    #+#             */
-/*   Updated: 2023/12/27 21:19:04 by adurusoy         ###   ########.fr       */
+/*   Updated: 2023/12/28 07:45:23 by adurusoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,35 @@ void	expand_utils4(t_shell **shell, char *before, char *new_value,
 		free(before);
 		free(new_value);
 		malloc_error(4, shell);
+	}
+}
+
+void	export_utils(t_shell **shell, char **key, char **value,
+			char *text)
+{
+	if (ft_strchr(text, '=') != 0)
+	{
+		*key = ft_substr(text, 0, ft_strchrindex(text, '='));
+		if (!(*key))
+			malloc_error(5, shell);
+		*value = ft_substr(text, ft_strchrindex(text, '=') + 1, (ft_strlen(text)
+					- 1));
+		if (!(*value)[0] && *value)
+		{
+			free(*value);
+			*value = ft_strdup("\"\"");
+		}
+		if (!(*value))
+		{
+			free(key);
+			malloc_error(5, shell);
+		}
+	}
+	else
+	{
+		*key = ft_substr(text, 0, ft_strlen(text));
+		if (!(*key))
+			malloc_error(5, shell);
+		*value = NULL;
 	}
 }
